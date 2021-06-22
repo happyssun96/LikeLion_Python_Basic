@@ -1,0 +1,39 @@
+import random
+
+def makeset():
+    sweet = list(range(101))
+    ran = random.randint(1,50)
+    ransweet =  random.randint(0, 100)
+    ranli = random.sample(sweet,ran)
+    ranli = sorted(ranli)
+    f_line = [len(ranli) ,ransweet]
+    return [f_line, ranli]
+
+# 문제 시작
+# makeset의 리턴값 [개수, 최소 달콤함 수치]
+proset = makeset()
+a = proset[0]
+# [각 쿠키의 달콤함 수치]
+b = proset[1]
+print(a, b)
+
+# 달콤함 수치 = (1 * 가장 안 단 쿠키 + 2 * 두번째로 안 단 쿠키).
+
+count = 0 
+solve = False
+while solve == False:
+    cookie = b.pop(0)
+    if cookie < a[1]:
+        cookie = cookie + b.pop(0) * 2 
+        print(cookie)
+        b.insert(-1, cookie)
+        count += 1
+        print(a, b)
+    else:
+        solve = True
+
+
+# 정답 적기
+answer = count
+
+print("정답은:",answer)
